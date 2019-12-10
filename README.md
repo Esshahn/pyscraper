@@ -27,7 +27,9 @@ edit the file `products.json` to add or remove product URLs and prices
 
 # configure your email
 watch the youtube video for a good start how to configure gmail
+
 https://www.youtube.com/watch?v=Bg9r_yLk7VY
+
 Add your email and password to `products.json`
 
 # setup a cronjob (e.g. on Raspberry Pi)
@@ -36,4 +38,8 @@ good tutorial here: https://medium.com/@gavinwiener/how-to-schedule-a-python-scr
 `crontab -e`
 
 Add a line, e.g. mine is (every day at 14:55)
+
 `55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper.py`
+
+
+I'm by no means a Python or Linux expert, but I'm happy to help if you create an issue.
