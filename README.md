@@ -32,6 +32,8 @@ Add your email and password to `products.json`
 
 # setup a cronjob (e.g. on Raspberry Pi)
 good tutorial here: https://medium.com/@gavinwiener/how-to-schedule-a-python-script-cron-job-dea6cbf69f4e
+
 `crontab -e`
-add a line, e.g. mine is (every day at 14:55)
+
+Add a line, e.g. mine is (every day at 14:55)
 `55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper.py`
