@@ -1,0 +1,14 @@
+{
+  "email": "youremail@gmail.com",
+  "password": "yourpassword",
+  "products": [
+    {
+      "url": "https://www.amazon.de/Hellblade-Senuas-Sacrifice-PlayStation-4/dp/B07JH57258/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=hellblade&qid=1575971001&s=videogames&sr=1-2",
+      "price": 19
+    },
+    {
+      "url": "https://www.amazon.de/LG-OLED55C97LA-Fernseher-Triple-Cinema/dp/B07PPJPLWK/ref=sr_1_3?_encoding=UTF8&camp=1638&creative=19454&keywords=LG+OLED55C97LA&linkCode=ur2&qid=1575982453&site-redirect=de&sr=8-3&x=0&y=0",
+      "price": 1000
+    }
+  ]
+}
