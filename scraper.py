@@ -1,7 +1,7 @@
 # pyscraper for Amazon
 # based on https://www.youtube.com/watch?v=Bg9r_yLk7VY
 # adapted by Ingo Hinterding
-# https://github.com/Esshahn
+# https://github.com/Esshahn/pyscraper
 #
 # The script takes a JSON file containing URLs of products on Amazon
 # and a desired price to check for. If the current price is equal or
