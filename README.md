@@ -2,7 +2,7 @@
 A python script scraping product websites on Amazon that will send you an email if a defined price is reached.
 
 based on https://www.youtube.com/watch?v=Bg9r_yLk7VY
-adapted by Ingo Hinterding
+and adapted by Ingo Hinterding
 
 
 The script takes a JSON file containing URLs of products on Amazon
