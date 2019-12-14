@@ -81,12 +81,13 @@ I'm by no means a Python or Linux expert, but I'm happy to help if you create an
 # Known Bugs
 
 - only german currency notation is checked (can easily be adapted though)
-- special deal prices are not recognized yet
+
 
 # Version History
 
 ## 1.01
 
+- a different price formatting approach should work better with multiple currencies
 - checking for more CSS tags on Amazon's product website
 - sender and recipient emails can now be different
 - you can specify a different email for each product search

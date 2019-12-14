@@ -21,7 +21,7 @@
 
 import requests
 import json
-import sys, os
+import sys, os, re
 from bs4 import BeautifulSoup
 import smtplib
 
@@ -80,10 +80,10 @@ def check_price(search_object):
       break
     
 
-  # convert the currency string to a rounded number
+  # convert the currency string to number
   # this needs to be adapted to your local currency notation
-  price = round(float(price_string[:-2].replace(".", "").replace(",", ".")))
-
+  price = float(re.sub(r'\W+', '', price_string))/100
+    
   print(title)
   print(f"Current price is: {price_string}")
   print(f"Price alarm at: {search_object['price']}")
