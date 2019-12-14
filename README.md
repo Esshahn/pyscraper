@@ -10,9 +10,8 @@ and adapted by Ingo Hinterding
 
 The script takes a JSON file containing URLs of products on Amazon and a desired price to check for. If the current price is equal or lower than the desired price, it sends an email to the specified account.
 
-Note that the price scraped from the website is converted based on german currency notation, e.g. "1.234,56 €".
-
-You might want to adapt it to your currency notation
+Note that the price scraped from the website is converted based on german currency notation, e.g. "1.234,56 €". 
+You might want to adapt it to your currency notation.
 
 ## install
 `pip3 install requests bs4`
@@ -24,12 +23,15 @@ You might want to adapt it to your currency notation
 Edit the file `products.json` to add or remove product URLs and prices
 
 `"email_from": "your_sender_email@example.com"`
+
 Fill in an email address from where the emails will be send
 
 `"email_from_password": "your_sender_password"`
+
 Fill in the password for the sender email address
 
 `"email_to_default": "your_default_email@example.com"`
+
 Where emails get send to by default (execptions can be made per product). This can be the same email address you specify above, if you're using the script just for yourself.
 
 ```
@@ -42,12 +44,15 @@ Where emails get send to by default (execptions can be made per product). This c
 ```
 
 `url` 
+
 Insert the URL to the product you want to track (it doesn't matter if the query changes or has extra data as long as the website ist displayed correctly)
 
 `price`
+
 The desired price of the product. Integer number. The script will send an email if the price is equal or lower.
 
-`email` (optional)
+`email` (optional, remove if not needed)
+
 You can add this line if you want to send the alarm to a different email address. Great if you want to share this script with friends.
 
 
@@ -83,7 +88,7 @@ I'm by no means a Python or Linux expert, but I'm happy to help if you create an
 ## 1.01
 
 - sender and recipient emails can now be different
-- you can specifiy a different email for each product search
+- you can specify a different email for each product search
 
 ## 1.0
 
