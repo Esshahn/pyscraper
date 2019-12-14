@@ -1,7 +1,7 @@
 ![alt text](https://github.com/Esshahn/pyscraper/blob/master/email-screenshot.png "E-Mail")
 
 
-## pyscraper
+# pyscraper
 A python script scraping product websites on Amazon that will send you an email if a defined price is reached.
 
 based on https://www.youtube.com/watch?v=Bg9r_yLk7VY
@@ -14,13 +14,13 @@ Note that the price scraped from the website is converted based on german curren
 
 You might want to adapt it to your currency notation
 
-# install
+## install
 `pip3 install requests bs4`
 
-# run directly
+## run directly
 `python3 pyscraper.py`
 
-## configure product.json
+# configure product.json
 Edit the file `products.json` to add or remove product URLs and prices
 
 `"email_from": "your_sender_email@example.com"`
@@ -51,7 +51,7 @@ The desired price of the product. Integer number. The script will send an email 
 You can add this line if you want to send the alarm to a different email address. Great if you want to share this script with friends.
 
 
-# configure your email account
+## configure your email account
 watch the youtube video for a good start how to configure gmail
 
 https://www.youtube.com/watch?v=Bg9r_yLk7VY
@@ -69,23 +69,23 @@ Add a line, e.g. mine is (every day at 14:55)
 `55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper.py`
 
 
-## HELP!!!1
+# HELP!!!1
 I'm by no means a Python or Linux expert, but I'm happy to help if you create an issue.
 
 
-## Known Bugs
+# Known Bugs
 
 - only german currency notation is checked (can easily be adapted though)
 - special deal prices are not recognized yet
 
-## Version History
+# Version History
 
-# 1.01
+## 1.01
 
 - sender and recipient emails can now be different
 - you can specifiy a different email for each product search
 
-# 1.0
+## 1.0
 
 - initial release
 
