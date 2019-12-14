@@ -87,6 +87,7 @@ I'm by no means a Python or Linux expert, but I'm happy to help if you create an
 
 ## 1.01
 
+- checking for more CSS tags on Amazon's product website
 - sender and recipient emails can now be different
 - you can specify a different email for each product search
 

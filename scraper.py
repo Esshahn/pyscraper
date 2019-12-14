@@ -7,10 +7,6 @@
 # and a desired price to check for. If the current price is equal or
 # lower than the desired price, it sends an email to the specified account.
 #
-# Note that the price scraped from the website is converted based on 
-# german currency notation, e.g. "1.234,56 €"
-# You might want to adapt it to your currency notation
-#
 # install
 # pip3 install requests bs4
 #
@@ -19,17 +15,6 @@
 #
 # configure
 # edit the file products.json to add or remove product URLs and prices
-#
-# configure your email
-# watch the youtube video for a good start how to configure gmail
-# https://www.youtube.com/watch?v=Bg9r_yLk7VY
-# Add your email and password to products.json
-#
-# setup a cronjob (e.g. on Raspberry Pi)
-# good tutorial here: https://medium.com/@gavinwiener/how-to-schedule-a-python-script-cron-job-dea6cbf69f4e
-# crontab -e
-# add a line, e.g. mine is (every day at 14:55)
-# 55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper.py
 
 
 
@@ -41,7 +26,38 @@ from bs4 import BeautifulSoup
 import smtplib
 
 
+# clears the terminal
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
+
+# loads the json file
+def load_json():
+  with open(sys.path[0] + '/products.json') as json_file:
+    return json.load(json_file)
+
+
+
+def scraper(json_data):
+  for p in json_data['products']:
+    search_object = {}
+    search_object['url'] = p['url']
+    search_object['price'] = p['price']
+    search_object['email_from'] = json_data['email_from']
+    search_object['email_from_password'] = json_data['email_from_password']
+    
+    # if a product entry has an email, use that one instead of the default
+    if "email" in p:
+      search_object['email_to'] = p['email']
+    else:
+      search_object['email_to'] = json_data['email_to_default']
+
+    check_price(search_object)
+
+
+################################
+# check the price on the website
+################################
 def check_price(search_object):
 
   headers = {
@@ -51,14 +67,23 @@ def check_price(search_object):
   soup = BeautifulSoup( page.content, 'html.parser' )
 
   title = soup.find(id="productTitle").get_text().strip()
-  price_string = soup.find(
-      id="priceblock_ourprice").get_text().strip()
+  
+  # these are the css IDs of the price on the Amazon website
+  price_strings = {"priceblock_ourprice","priceblock_dealprice","priceblock_saleprice"}
+
+  # check if any of the price IDs matches
+  for string in price_strings:
+    result = soup.find(id=string)
+    
+    if result is not None:
+      price_string = result.get_text().strip()
+      break
+    
 
   # convert the currency string to a rounded number
   # this needs to be adapted to your local currency notation
   price = round(float(price_string[:-2].replace(".", "").replace(",", ".")))
 
-  print ("\n----------------------------\n")
   print(title)
   print(f"Current price is: {price_string}")
   print(f"Price alarm at: {search_object['price']}")
@@ -70,10 +95,13 @@ def check_price(search_object):
     send_mail( search_object )
   else:
     print("No alarm.")
+  
+  print("\n----------------------------\n")
 
 
-
+################################
 # send email 
+################################
 def send_mail( search_object ):
   server = smtplib.SMTP('smtp.gmail.com', 587)
   server.ehlo()
@@ -97,43 +125,9 @@ def send_mail( search_object ):
 
 
 
-# clears the terminal
-def cls():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-
-
-# loads the json file
-def load_json():
-  with open(sys.path[0] + '/products.json') as json_file:
-    return json.load(json_file)
-    
-    
-
-def scraper(json_data):
-  for p in json_data['products']:
-    search_object = {}
-    search_object['url'] = p['url']
-    search_object['price'] = p['price']
-    search_object['email_from'] = json_data['email_from'];
-    search_object['email_from_password'] = json_data['email_from_password']
-    if "email" in p:
-      search_object['email_to'] = p['email']
-    else:
-      search_object['email_to'] = json_data['email_to_default']
-
-    check_price(search_object)
-
-
-
-def main():
-  cls()
-  scraper(load_json())
-  
-
-
-
 ## -------------- main -------------- ##
 
-main()
+
+cls()
+scraper(load_json())
 
