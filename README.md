@@ -71,19 +71,19 @@ good tutorial here: https://medium.com/@gavinwiener/how-to-schedule-a-python-scr
 
 Add a line, e.g. mine is (every day at 14:55)
 
-`55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper.py`
+`55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper.py >> log.txt`
 
 
 # HELP!!!1
 I'm by no means a Python or Linux expert, but I'm happy to help if you create an issue.
 
 
-# Known Bugs
-
-- only german currency notation is checked (can easily be adapted though)
-
-
 # Version History
+
+## 1.02
+
+- Some (very basic) error handling is added for when no price was found (you'll be informed by email, too)
+- removed terminal clear command and added timestamp output so that it can write to a log file (log.txt)
 
 ## 1.01
 

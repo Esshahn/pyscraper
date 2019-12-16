@@ -18,17 +18,11 @@
 
 
 import requests
-import json
-import sys
-import os
-import re
-from bs4 import BeautifulSoup
+import sys, re, json
 import smtplib
-
-
-# clears the terminal
-def cls():
-    os.system('cls' if os.name == 'nt' else 'clear')
+from datetime import datetime
+from bs4 import BeautifulSoup
+from datetime import datetime
 
 
 # loads the json file
@@ -104,7 +98,7 @@ def check_price(search_object):
     search_object["price_string"] = None
     send_mail(search_object)
 
-  print("\n----------------------------\n")
+  print("\n-----\n")
 
 
 ################################
@@ -143,5 +137,6 @@ def send_mail(search_object):
 
 ## -------------- main -------------- ##
 
-cls()
+print("\n\n",datetime.now().strftime("%Y/%m/%d %H:%M:%S"), " ----------------------------\n")
 scraper(load_json())
+
