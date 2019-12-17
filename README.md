@@ -19,7 +19,7 @@ You might want to adapt it to your currency notation.
 ## run directly
 `python3 pyscraper.py`
 
-# configure product.json
+# configure products.json
 Edit the file `products.json` to add or remove product URLs and prices
 
 `"email_from": "your_sender_email@example.com"`
@@ -71,7 +71,7 @@ good tutorial here: https://medium.com/@gavinwiener/how-to-schedule-a-python-scr
 
 Add a line, e.g. mine is (every day at 14:55)
 
-`55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper.py >> log.txt`
+`55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper.py >> /home/pi/code/scraper/log.txt`
 
 
 # HELP!!!1
