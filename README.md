@@ -1,6 +1,16 @@
 ![alt text](https://github.com/Esshahn/pyscraper/blob/master/email-screenshot.png "E-Mail")
 
 
+```
+
+                                                          
+  __ \   |   |   __|   __|   __|  _` |  __ \    _ \   __| 
+  |   |  |   | \__ \  (     |    (   |  |   |   __/  |    
+  .__/  \__, | ____/ \___| _|   \__,_|  .__/  \___| _|    
+ _|     ____/                          _|                 
+
+```
+
 # pyscraper
 A python script scraping product websites on Amazon that will send you an email if a defined price is reached.
 

@@ -1,3 +1,11 @@
+
+#                                                          
+#  __ \   |   |   __|   __|   __|  _` |  __ \    _ \   __| 
+#  |   |  |   | \__ \  (     |    (   |  |   |   __/  |    
+#  .__/  \__, | ____/ \___| _|   \__,_|  .__/  \___| _|    
+# _|     ____/                          _|                 
+#
+#
 # pyscraper for Amazon
 # based on https://www.youtube.com/watch?v=Bg9r_yLk7VY
 # adapted by Ingo Hinterding
@@ -24,12 +32,14 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 
 
+
 def load_JSON(filename):
     # load JSON
     with open(sys.path[0] + '/' + filename) as json_file:
         json_data =  json.load(json_file)
 
     return json_data
+
 
 
 
@@ -80,6 +90,7 @@ def check_price(item,email_to):
     
 
 
+
 def create_mail_alarm(title,price_string,price,url):
 
     subject = f'Price alarm: {price_string} for {title[0:40]}...'
@@ -93,6 +104,7 @@ def create_mail_alarm(title,price_string,price,url):
 
 
 
+
 def create_mail_error(title,url):
 
     subject = f'Please check product {title[0:40]}...'
@@ -103,6 +115,7 @@ def create_mail_error(title,url):
     msg = f'Subject: {subject}\n\n{body}'
 
     return msg
+
 
 
 
