@@ -33,9 +33,6 @@ def load_JSON(filename):
 
 
 
-################################
-# check the price on the website
-################################
 def check_price(item,email_to):
 
     headers = {
@@ -95,6 +92,7 @@ def create_mail_alarm(title,price_string,price,url):
     return msg
 
 
+
 def create_mail_error(title,url):
 
     subject = f'Please check product {title[0:40]}...'
@@ -107,9 +105,7 @@ def create_mail_error(title,url):
     return msg
 
 
-################################
-# send email
-################################
+
 def send_mail(msg, email_to, email_from, email_from_password, email_from_smtp, email_from_port):
     server = smtplib.SMTP(email_from_smtp, email_from_port)
     server.ehlo()
