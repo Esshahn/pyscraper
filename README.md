@@ -30,6 +30,14 @@ Fill in an email address from where the emails will be send
 
 Fill in the password for the sender email address
 
+`"email_from_smtp": "smtp.gmail.com"`
+
+The SMTP server of your email provider, e.g. Google Mail
+
+`"email_from_port": 587`
+
+The port number of your email provider
+
 `"email_to_default": "your_default_email@example.com"`
 
 Where emails get send to by default (execptions can be made per product). This can be the same email address you specify above, if you're using the script just for yourself.
@@ -79,6 +87,14 @@ I'm by no means a Python or Linux expert, but I'm happy to help if you create an
 
 
 # Version History
+
+## 1.10
+
+- a complete rewrite with everything shuffled around
+- in an attempt to clean the code I probably made it worse... :)
+- nah, guess we're fine...
+- migrated SMTP and PORT information from code to JSON file where it belongs
+- abstracted the functions better
 
 ## 1.02
 
