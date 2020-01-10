@@ -1,0 +1,48 @@
+{
+  "products": [
+    {
+      "url": "https://www.nintendo.de/Spiele/Nintendo-Switch-Download-Software/Untitled-Goose-Game-1437769.html",
+      "ajax": "https://api.ec.nintendo.com/v1/price?country=DE&lang=de&ids=70010000017759",
+      "price": 12
+    },
+    {
+      "url": "https://www.nintendo.de/Spiele/Nintendo-Switch-Download-Software/Alien-Isolation-1575873.html",
+      "ajax": "https://api.ec.nintendo.com/v1/price?country=DE&lang=de&ids=70010000020816",
+      "price": 20
+    },
+    {
+      "url": "https://www.nintendo.de/Spiele/Nintendo-Switch-Download-Software/Hellblade-Senua-s-Sacrifice-1542934.html",
+      "ajax": "https://api.ec.nintendo.com/v1/price?country=DE&lang=de&ids=70010000016061",
+      "price": 15
+    },
+    {
+      "url": "https://www.nintendo.de/Spiele/Nintendo-Switch/OCTOPATH-TRAVELER-1275922.html",
+      "ajax": "https://api.ec.nintendo.com/v1/price?country=DE&lang=de&ids=70010000001617%2C70010000011663",
+      "price": 20
+    },
+    {
+      "url": "https://www.nintendo.de/Spiele/Nintendo-Switch/Dr-Kawashimas-Gehirn-Jogging-fur-Nintendo-Switch-1656777.html",
+      "ajax": "https://api.ec.nintendo.com/v1/price?country=DE&lang=de&ids=70010000025421",
+      "price": 20
+    },
+    {
+      "url": "https://www.nintendo.de/Spiele/Nintendo-Switch-Download-Software/What-Remains-of-Edith-Finch-1589999.html",
+      "ajax": "https://api.ec.nintendo.com/v1/price?country=DE&lang=de&ids=70010000019332",
+      "price": 10
+    },
+    {
+      "url": "https://www.nintendo.de/Spiele/Nintendo-Switch-Download-Software/Hollow-Knight-1125772.html",
+      "ajax": "https://api.ec.nintendo.com/v1/price?country=DE&lang=de&ids=70010000003207",
+      "price": 10
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+

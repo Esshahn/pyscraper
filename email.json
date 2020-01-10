@@ -1,0 +1,7 @@
+{
+  "email_from": "",
+  "email_from_password": "",
+  "email_from_smtp": "",
+  "email_from_port": 587,
+  "email_to_default": ""
+}

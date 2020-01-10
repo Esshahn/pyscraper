@@ -1,14 +1,8 @@
 {
-  "email_from": "yourname@gmail.com",
-  "email_from_password": "password",
-  "email_from_smtp": "smtp.gmail.com",
-  "email_from_port": 587,
-  "email_to_default": "yourmail@example.com",
   "products": [
     {
       "url": "https://www.amazon.de/Hellblade-Senuas-Sacrifice-PlayStation-4/dp/B07JH57258/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=hellblade&qid=1575971001&s=videogames&sr=1-2",
-      "price": 29,
-      "email": "anothermail@example.com"
+      "price": 29
     },
     {
       "url": "https://www.amazon.de/dp/B079QHMFWC/ref=gw_de_desk_other_smp_mn_lmcd19?pf_rd_p=d72b6f0a-d838-4fca-bf2f-ac9d519cb581&pf_rd_r=NHBX4BPP1Z3513X8HZ87",

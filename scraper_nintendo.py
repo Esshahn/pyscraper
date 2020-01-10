@@ -6,23 +6,10 @@
 # _|     ____/                          _|                 
 #
 #
-# pyscraper for Amazon
+# pyscraper for the Nintendo Store
 # based on https://www.youtube.com/watch?v=Bg9r_yLk7VY
 # adapted by Ingo Hinterding
 # https://github.com/Esshahn/pyscraper
-#
-# The script takes a JSON file containing URLs of products on Amazon
-# and a desired price to check for. If the current price is equal or
-# lower than the desired price, it sends an email to the specified account.
-#
-# install
-# pip3 install requests bs4
-#
-# run directly
-# python3 pyscraper.py
-#
-# configure
-# edit the file products.json to add or remove product URLs and prices
 
 
 import requests
@@ -37,7 +24,6 @@ def load_JSON(filename):
     # load JSON
     with open(sys.path[0] + '/' + filename) as json_file:
         json_data =  json.load(json_file)
-
     return json_data
 
 
@@ -49,44 +35,33 @@ def check_price(item,email_to):
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'}
 
     page = requests.get(item["url"], headers=headers)
+
+    # the price is loaded via ajax and needs to be parsed separately
+    # to get the correct url, load in the webpage with the dev tools and watch the network/XHR tab
+    # there should be calls with a url you can use
+    json = requests.get(item["ajax"], headers=headers).json()
+    
+    try:
+        price = float(json["prices"][0]["discount_price"]["raw_value"])
+    except:
+        price = float(json["prices"][0]["regular_price"]["raw_value"])
+    
     soup = BeautifulSoup(page.content, 'html.parser')
-
-    title = soup.find(id="productTitle").get_text().strip()
-
-    # these are the css IDs of the price on the Amazon website
-    price_strings = {"priceblock_ourprice",
-                     "priceblock_dealprice", 
-                     "priceblock_saleprice"}
-
-    # check if any of the price IDs matches
-    for string in price_strings:
-        result = soup.find(id=string)
-
-        if result is not None:
-            price_string = result.get_text().strip()
-            break
+    title = soup.find("title").get_text().strip()
 
     print('\n-----\n' + title)
     item["title"] = title
 
-    if result is not None:
-        # convert the currency string to number
-        # this needs to be adapted to your local currency notation
-        price = float(re.sub(r'\W+', '', price_string))/100
+    print(f'Price: {price}, alarm at {item["price"]}')
 
-        print(f'Price: {price_string}, alarm at {item["price"]}')
-
-        if (price <= item["price"]):
-            print(f'Sending email to {email_to}')
-            item["price_string"] = price_string
-            return item
-        else:
-            print('No alarm.')
-        
-    else:
-        print('No price information found. The link might be wrong or outdated.')
+    if (price <= item["price"]):
         print(f'Sending email to {email_to}')
+        item["price_string"] = price
         return item
+    else:
+        print('No alarm.')
+        
+
     
 
 
@@ -134,10 +109,11 @@ def send_mail(msg, email_to, email_from, email_from_password, email_from_smtp, e
 
 print('\n\n',datetime.now().strftime('%Y/%m/%d %H:%M:%S'), ' ----------------------------\n')
 
-items = load_JSON('products.json')
+items = load_JSON('products_nintendo.json')
+email = load_JSON('email.json')
 
 for item in items["products"]:
-    email_to = item["email"] if "email" in item else items["email_to_default"]  
+    email_to = item["email"] if "email" in item else email["email_to_default"]  
     result = check_price(item,email_to)
     
     if result:
@@ -152,7 +128,7 @@ for item in items["products"]:
         
         send_mail(msg,
                   email_to, 
-                  items["email_from"], 
-                  items["email_from_password"], 
-                  items["email_from_smtp"], 
-                  items["email_from_port"])
+                  email["email_from"], 
+                  email["email_from_password"], 
+                  email["email_from_smtp"], 
+                  email["email_from_port"])

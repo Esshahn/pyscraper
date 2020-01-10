@@ -12,7 +12,8 @@
 ```
 
 # pyscraper
-A python script scraping product websites on Amazon that will send you an email if a defined price is reached.
+Python scripts scraping product websites that will send you an email if a defined price is reached.
+Currently supporting Amazon and the Nintendo Store.
 
 based on https://www.youtube.com/watch?v=Bg9r_yLk7VY
 and adapted by Ingo Hinterding
@@ -27,10 +28,14 @@ You might want to adapt it to your currency notation.
 `pip3 install requests bs4`
 
 ## run directly
-`python3 pyscraper.py`
+`python3 pyscraper_amazon.py`
 
-# configure products.json
-Edit the file `products.json` to add or remove product URLs and prices
+## configure your email account
+watch the youtube video for a good start how to configure gmail
+
+https://www.youtube.com/watch?v=Bg9r_yLk7VY
+
+# configure email.json
 
 `"email_from": "your_sender_email@example.com"`
 
@@ -51,6 +56,9 @@ The port number of your email provider
 `"email_to_default": "your_default_email@example.com"`
 
 Where emails get send to by default (execptions can be made per product). This can be the same email address you specify above, if you're using the script just for yourself.
+
+# configure products.json
+Edit the file `products_amazon.json` to add or remove product URLs and prices
 
 ```
 "products": [
@@ -74,12 +82,6 @@ The desired price of the product. Integer number. The script will send an email 
 You can add this line if you want to send the alarm to a different email address. Great if you want to share this script with friends.
 
 
-## configure your email account
-watch the youtube video for a good start how to configure gmail
-
-https://www.youtube.com/watch?v=Bg9r_yLk7VY
-
-Add your email and password to `products.json`
 
 
 # setup a cronjob (e.g. on Raspberry Pi)
@@ -89,7 +91,7 @@ good tutorial here: https://medium.com/@gavinwiener/how-to-schedule-a-python-scr
 
 Add a line, e.g. mine is (every day at 14:55)
 
-`55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper.py >> /home/pi/code/scraper/log.txt`
+`55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper_amazon.py >> /home/pi/code/scraper/log_amazon.txt`
 
 
 # HELP!!!1
@@ -97,6 +99,12 @@ I'm by no means a Python or Linux expert, but I'm happy to help if you create an
 
 
 # Version History
+
+## 1.20
+
+- removed the email configuration out of the `products.json` into its own `email.json`
+- added `_amazon` suffix to the scraper.py and the products.json filenames
+- added a scraper for the Nintendo website. This one is a bit more complicated as it requires a bit of knowledge how to detect Ajax scripts with the developer tools of your browser. The price is loaded via ajax and needs to be parsed separately. To get the correct url, load in the webpage with the dev tools and watch the network/XHR tab. There should be calls with a url you can use (will make this automatic in the next version)
 
 ## 1.10
 
