@@ -34,12 +34,15 @@ def check_price(item,email_to):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'}
 
-    page = requests.get(item["url"], headers=headers)
-
     # the price is loaded via ajax and needs to be parsed separately
-    # to get the correct url, load in the webpage with the dev tools and watch the network/XHR tab
-    # there should be calls with a url you can use
-    json = requests.get(item["ajax"], headers=headers).json()
+    # to get the correct url of the script, we find a specific variable "offdeviceNsuID"
+    # and geth the ID. This is done in a very hacky way as you can see below
+
+    page = requests.get(item["url"], headers=headers)
+    nsuid_pos = str(page.content).find("offdeviceNsuID")+18
+    game_id = str(page.content)[nsuid_pos:nsuid_pos+14]
+    ajax_url = "https://api.ec.nintendo.com/v1/price?country=DE&lang=de&ids=" + game_id
+    json = requests.get(ajax_url, headers=headers).json()
     
     try:
         price = float(json["prices"][0]["discount_price"]["raw_value"])
@@ -47,6 +50,7 @@ def check_price(item,email_to):
         price = float(json["prices"][0]["regular_price"]["raw_value"])
     
     soup = BeautifulSoup(page.content, 'html.parser')
+    
     title = soup.find("title").get_text().strip()
 
     print('\n-----\n' + title)
