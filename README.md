@@ -100,6 +100,10 @@ I'm by no means a Python or Linux expert, but I'm happy to help if you create an
 
 # Version History
 
+## 1.21
+
+- Nintendo: there's no need for an additional ajax url anymore, the script detects the right one automatically
+
 ## 1.20
 
 - removed the email configuration out of the `products.json` into its own `email.json`
