@@ -12,14 +12,13 @@
 ```
 
 # pyscraper
-Python scripts scraping product websites that will send you an email if a defined price is reached.
+Python script scraping product websites that will send you an email if a defined price is reached.
 Currently supporting Amazon and the Nintendo Store.
 
 based on https://www.youtube.com/watch?v=Bg9r_yLk7VY
 and adapted by Ingo Hinterding
 
-
-The script takes a JSON file containing URLs of products on Amazon and a desired price to check for. If the current price is equal or lower than the desired price, it sends an email to the specified account.
+The script takes a JSON file containing URLs of products and a desired price to check for. If the current price is equal or lower than the desired price, it sends an email to the specified account.
 
 Note that the price scraped from the website is converted based on german currency notation, e.g. "1.234,56 €". 
 You might want to adapt it to your currency notation.
@@ -28,7 +27,7 @@ You might want to adapt it to your currency notation.
 `pip3 install requests bs4`
 
 ## run directly
-`python3 pyscraper_amazon.py`
+`python3 pyscraper.py`
 
 ## configure your email account
 watch the youtube video for a good start how to configure gmail
@@ -58,7 +57,7 @@ The port number of your email provider
 Where emails get send to by default (execptions can be made per product). This can be the same email address you specify above, if you're using the script just for yourself.
 
 # configure products.json
-Edit the file `products_amazon.json` to add or remove product URLs and prices
+Edit the file `amazon.json` to add or remove product URLs and prices
 
 ```
 "products": [
@@ -91,14 +90,16 @@ good tutorial here: https://medium.com/@gavinwiener/how-to-schedule-a-python-scr
 
 Add a line, e.g. mine is (every day at 14:55)
 
-`55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper_amazon.py >> /home/pi/code/scraper/log_amazon.txt`
+`55 14 * * * /usr/bin/python3 /home/pi/code/scraper/scraper.py >> /home/pi/code/scraper/log.txt`
 
-
-# HELP!!!1
-I'm by no means a Python or Linux expert, but I'm happy to help if you create an issue.
 
 
 # Version History
+
+## 1.3
+
+- The Amazon and Nintendo scrapers have been merged
+- Automatic detection of the website domain
 
 ## 1.22
 
