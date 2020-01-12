@@ -13,7 +13,7 @@
 
 
 import requests
-import sys, re, json
+import sys, re, json, random
 import smtplib
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -33,7 +33,7 @@ def load_JSON(filename):
 def check_price(item,email_to):
 
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'}
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.' + str(random.randint(0,1000))}
 
     page = requests.get(item["url"], headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
