@@ -100,6 +100,10 @@ I'm by no means a Python or Linux expert, but I'm happy to help if you create an
 
 # Version History
 
+## 1.22
+
+- I added a random number to the Safari GET header, which seems to prevent Amazon asking if the script is a robot.
+
 ## 1.21
 
 - Nintendo: there's no need for an additional ajax url anymore, the script detects the right one automatically
